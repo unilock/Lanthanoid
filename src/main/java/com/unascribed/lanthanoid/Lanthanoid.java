@@ -47,8 +47,8 @@ import net.minecraftforge.common.MinecraftForge;
 @Mod(
 	modid="lanthanoid",
 	name="Lanthanoid",
-	version="@VERSION@",
-	acceptedMinecraftVersions="@MCVERSION@",
+	version=Tags.VERSION,
+	acceptedMinecraftVersions="[1.7.10]",
 	dependencies="required-after:malisiscore;after:backlytra"
 	)
 public class Lanthanoid {
