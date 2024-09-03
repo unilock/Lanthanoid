@@ -44,8 +44,8 @@ public class ItemEldritchSword extends ItemSword implements IGlyphHolderItem {
 	}
 	
 	@Override
-	public float getStrVsBlock(ItemStack stack, Block block) {
-		return getMilliglyphs(stack) > 0 ? super.getStrVsBlock(stack, block) : super.getStrVsBlock(stack, block)/3;
+	public float func_150893_a(ItemStack stack, Block block) {
+		return getMilliglyphs(stack) > 0 ? super.func_150893_a(stack, block) : super.func_150893_a(stack, block)/3;
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class ItemEldritchSword extends ItemSword implements IGlyphHolderItem {
 	
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		return getStrVsBlock(stack, block);
+		return func_150893_a(stack, block);
 	}
 	
 	@Override
@@ -124,7 +124,7 @@ public class ItemEldritchSword extends ItemSword implements IGlyphHolderItem {
 	}
 	
 	@Override
-	public ItemStack onItemUseFinish(ItemStack p_77654_1_, World p_77654_2_, EntityPlayer player) {
+	public ItemStack onEaten(ItemStack p_77654_1_, World p_77654_2_, EntityPlayer player) {
 		Vec3 look = player.getLookVec();
 		player.motionX = look.xCoord*2;
 		player.motionY = look.yCoord+0.2;

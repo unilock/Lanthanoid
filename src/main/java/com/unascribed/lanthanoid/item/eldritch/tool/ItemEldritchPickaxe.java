@@ -37,8 +37,8 @@ public class ItemEldritchPickaxe extends ItemPickaxe implements IGlyphHolderItem
 	}
 	
 	@Override
-	public float getStrVsBlock(ItemStack stack, Block block) {
-		return getMilliglyphs(stack) > 0 ? super.getStrVsBlock(stack, block)*(block.isToolEffective("pickaxe", 0) ? 1+getBoost(stack) : 0.5f) : 0.5f;
+	public float func_150893_a(ItemStack stack, Block block) {
+		return getMilliglyphs(stack) > 0 ? super.func_150893_a(stack, block)*(block.isToolEffective("pickaxe", 0) ? 1+getBoost(stack) : 0.5f) : 0.5f;
 	}
 	
 	private float getBoost(ItemStack stack) {
@@ -60,7 +60,7 @@ public class ItemEldritchPickaxe extends ItemPickaxe implements IGlyphHolderItem
 	
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		return getStrVsBlock(stack, block);
+		return func_150893_a(stack, block);
 	}
 	
 	@Override

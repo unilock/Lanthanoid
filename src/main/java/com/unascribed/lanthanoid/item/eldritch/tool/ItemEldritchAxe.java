@@ -58,7 +58,7 @@ public class ItemEldritchAxe extends ItemAxe implements IGlyphHolderItem {
 			if (block == expected && meta == expectedMeta && GlyphItemHelper.doBlockDestroyed(getOuterType(), stack, world, block, x, y, z, player)) {
 				stack.damageItem(1, player);
 				LUtil.harvest(player, world, x, y, z, stack, true, true, false);
-				if (stack.getMetadata() >= stack.getMaxDurability()) {
+				if (stack.getItemDamage() >= stack.getMaxDamage()) {
 					player.destroyCurrentEquippedItem();
 				} else {
 					addSurroundings(world, x, y, z, stack, player, initial);
@@ -202,8 +202,8 @@ public class ItemEldritchAxe extends ItemAxe implements IGlyphHolderItem {
 	}
 	
 	@Override
-	public float getStrVsBlock(ItemStack stack, Block block) {
-		return getMilliglyphs(stack) > 0 ? super.getStrVsBlock(stack, block) : super.getStrVsBlock(stack, block)/3;
+	public float func_150893_a(ItemStack stack, Block block) {
+		return getMilliglyphs(stack) > 0 ? super.func_150893_a(stack, block) : super.func_150893_a(stack, block)/3;
 	}
 	
 	@Override
@@ -213,7 +213,7 @@ public class ItemEldritchAxe extends ItemAxe implements IGlyphHolderItem {
 	
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		return getStrVsBlock(stack, block);
+		return func_150893_a(stack, block);
 	}
 	
 	@Override

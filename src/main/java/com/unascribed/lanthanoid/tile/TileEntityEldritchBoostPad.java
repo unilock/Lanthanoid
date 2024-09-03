@@ -70,7 +70,7 @@ public class TileEntityEldritchBoostPad extends TileEntityEldritch implements II
 	public void setMilliglyphs(int milliglyphs) {
 		super.setMilliglyphs(milliglyphs);
 		if ((milliglyphs < 100) != textureAnimating && hasWorldObj() && worldObj.isRemote) {
-			worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+			worldObj.func_147479_m(xCoord, yCoord, zCoord);
 		}
 	}
 	
@@ -106,7 +106,7 @@ public class TileEntityEldritchBoostPad extends TileEntityEldritch implements II
 		} else {
 			facing = null;
 		}
-		worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+		worldObj.func_147479_m(xCoord, yCoord, zCoord);
 	}
 	
 	@Override

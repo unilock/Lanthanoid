@@ -68,7 +68,7 @@ public class LUtil {
 		}
 		Vec3 vec31 = entity.getLookVec();
 		Vec3 vec32 = vec3.addVector(vec31.xCoord * distance, vec31.yCoord * distance, vec31.zCoord * distance);
-		return entity.worldObj.rayTraceBlocks(vec3, vec32, stopOnLiquid, ignoreBlockWithoutBoundingBox, returnLastUncollidableBlock);
+		return entity.worldObj.func_147447_a(vec3, vec32, stopOnLiquid, ignoreBlockWithoutBoundingBox, returnLastUncollidableBlock);
 	}
 	
 	public static void breakExtraBlock(World world, int x, int y, int z, int sidehit, EntityPlayer playerEntity, int refX, int refY, int refZ) {
@@ -116,7 +116,7 @@ public class LUtil {
 		}
 
 		// callback to the tool the player uses. Called on both sides. This damages the tool n stuff.
-		player.getCurrentEquippedItem().onBlockDestroyed(world, block, x, y, z, player);
+		player.getCurrentEquippedItem().func_150999_a(world, block, x, y, z, player);
 
 		// server sided handling
 		if (!world.isRemote) {
@@ -151,7 +151,7 @@ public class LUtil {
 			ItemStack itemstack = player.getCurrentEquippedItem();
 			if (itemstack != null)
 			{
-				itemstack.onBlockDestroyed(world, block, x, y, z, player);
+				itemstack.func_150999_a(world, block, x, y, z, player);
 
 				if (itemstack.stackSize == 0)
 				{

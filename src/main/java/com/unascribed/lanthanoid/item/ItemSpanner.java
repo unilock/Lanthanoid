@@ -14,7 +14,7 @@ public class ItemSpanner extends ItemBase {
 		super(Lanthanoid.inst.creativeTabEquipment);
 		setTextureName("lanthanoid:spanner");
 		setUnlocalizedName("rose_colored_spanner");
-		setMaxDurability(256);
+		setMaxDamage(256);
 		setMaxStackSize(1);
 	}
 	@Override

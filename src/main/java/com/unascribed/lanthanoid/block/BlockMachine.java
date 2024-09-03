@@ -167,7 +167,7 @@ public class BlockMachine extends BlockBase implements NameDelegate {
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack) {
 		if (!world.isRemote) {
-			if (stack.getMetadata() == 0 || stack.getMetadata() == 1 || stack.getMetadata() == 2) {
+			if (stack.getItemDamage() == 0 || stack.getItemDamage() == 1 || stack.getItemDamage() == 2) {
 				Waypoint waypoint = new Waypoint();
 				waypoint.setId();
 				waypoint.x = x;
@@ -175,7 +175,7 @@ public class BlockMachine extends BlockBase implements NameDelegate {
 				waypoint.z = z;
 				waypoint.name = stack.getDisplayName();
 				waypoint.ownerName = placer.getCommandSenderName();
-				waypoint.type = Waypoint.Type.values()[stack.getMetadata()];
+				waypoint.type = Waypoint.Type.values()[stack.getItemDamage()];
 				waypoint.color = stack.hasTagCompound() && stack.getTagCompound().hasKey("Color", 99) ? stack.getTagCompound().getInteger("Color") : 0xFFFFFF;
 				waypoint.owner = placer instanceof EntityPlayer ? ((EntityPlayer) placer).getGameProfile().getId() : placer.getPersistentID();
 				waypoint.nameDistance = 20;
@@ -300,7 +300,7 @@ public class BlockMachine extends BlockBase implements NameDelegate {
 	}
 	
 	@Override
-	public boolean isFullBlock() {
+	public boolean func_149730_j() {
 		return false;
 	}
 	
@@ -320,7 +320,7 @@ public class BlockMachine extends BlockBase implements NameDelegate {
 	}
 	
 	@Override
-	public void registerIcons(IIconRegister register) {
+	public void registerBlockIcons(IIconRegister register) {
 		IIcon holmiumBottom = register.registerIcon("lanthanoid_compositor:machineWaypointBottomHolmium");
 		IIcon yttriumBottom = register.registerIcon("lanthanoid_compositor:machineWaypointBottomYttrium");
 		IIcon holmiumTop = register.registerIcon("lanthanoid_compositor:machineWaypointTopHolmium");
@@ -400,7 +400,7 @@ public class BlockMachine extends BlockBase implements NameDelegate {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return "tile.machine." + stack.getMetadata();
+		return "tile.machine." + stack.getItemDamage();
 	}
 
 	@Override

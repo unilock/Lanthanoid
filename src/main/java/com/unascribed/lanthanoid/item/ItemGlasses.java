@@ -52,12 +52,12 @@ public class ItemGlasses extends ItemArmor {
 		return 0;
 	}
 	@Override
-	public int getMaxDurability() {
+	public int getMaxDamage() {
 		return 0;
 	}
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
-		list.add(StatCollector.translateToLocal("item.rcg_"+types[stack.getMetadata()%types.length]+".design"));
+		list.add(StatCollector.translateToLocal("item.rcg_"+types[stack.getItemDamage()%types.length]+".design"));
 		super.addInformation(stack, player, list, advanced);
 	}
 	@Override
@@ -72,7 +72,7 @@ public class ItemGlasses extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		GL11.glEnable(GL11.GL_BLEND);
-		return type == null ? "lanthanoid:textures/models/rcg_"+types[stack.getMetadata()%types.length]+".png" : null;
+		return type == null ? "lanthanoid:textures/models/rcg_"+types[stack.getItemDamage()%types.length]+".png" : null;
 	}
 	@Override
 	public void registerIcons(IIconRegister p_94581_1_) {
@@ -96,6 +96,6 @@ public class ItemGlasses extends ItemArmor {
 	}
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return "item.rcg_"+types[stack.getMetadata()%types.length];
+		return "item.rcg_"+types[stack.getItemDamage()%types.length];
 	}
 }

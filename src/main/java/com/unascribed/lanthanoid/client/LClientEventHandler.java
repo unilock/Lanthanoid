@@ -24,7 +24,6 @@ import com.unascribed.lanthanoid.glyph.IGlyphHolderItem;
 import com.unascribed.lanthanoid.init.LItems;
 import com.unascribed.lanthanoid.item.eldritch.armor.ItemEldritchArmor;
 import com.unascribed.lanthanoid.item.eldritch.armor.ItemEldritchBoots;
-import com.unascribed.lanthanoid.item.eldritch.armor.ItemEldritchElytra;
 import com.unascribed.lanthanoid.item.rifle.ItemRifle;
 import com.unascribed.lanthanoid.item.rifle.Mode;
 import com.unascribed.lanthanoid.item.rifle.PrimaryMode;
@@ -380,7 +379,7 @@ public class LClientEventHandler {
 					}
 				}
 				ItemStack itemstack = mc.thePlayer.getEquipmentInSlot(3);
-				boolean isElytra = itemstack != null && itemstack.getItem() instanceof ItemEldritchElytra;
+				boolean isElytra = false;/*itemstack != null && itemstack.getItem() instanceof ItemEldritchElytra;*/
 				if (isElytra || ClientConfig.flightScheme == Eagerness.EAGER || !mc.gameSettings.keyBindJump.getIsKeyPressed()) {
 					jumpTainted = false;
 				}
@@ -441,7 +440,7 @@ public class LClientEventHandler {
 		double pY = player.lastTickPosY + (player.posY - player.lastTickPosY) * partialTicks;
 		double pZ = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * partialTicks;
 		float f1 = 1.0f;
-		FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
 		Tessellator tess = Tessellator.instance;
 		
 		if (Lanthanoid.inst.waypointManager.allWaypoints(Minecraft.getMinecraft().theWorld).isEmpty()) {
@@ -679,10 +678,10 @@ public class LClientEventHandler {
 				Gui.drawRect((int)Math.floor(realX+realWidth), 0, e.resolution.getScaledWidth(), e.resolution.getScaledHeight(), 0xFF000000);
 				GL11.glPushMatrix();
 				GL11.glScalef(2, 2, 1);
-				boolean oldUnicode = mc.fontRendererObj.getUnicodeFlag();
-				mc.fontRendererObj.setUnicodeFlag(true);
-				mc.fontRendererObj.drawString(scopeFactor+"x", (e.resolution.getScaledWidth()/4)+20, (e.resolution.getScaledHeight()/4)+20, 0xC67226);
-				mc.fontRendererObj.setUnicodeFlag(oldUnicode);
+				boolean oldUnicode = mc.fontRenderer.getUnicodeFlag();
+				mc.fontRenderer.setUnicodeFlag(true);
+				mc.fontRenderer.drawString(scopeFactor+"x", (e.resolution.getScaledWidth()/4)+20, (e.resolution.getScaledHeight()/4)+20, 0xC67226);
+				mc.fontRenderer.setUnicodeFlag(oldUnicode);
 				GL11.glPopMatrix();
 				mc.renderEngine.bindTexture(WIDGITS);
 			}
@@ -716,13 +715,13 @@ public class LClientEventHandler {
 					Waypoint w = Lanthanoid.inst.waypointManager.getWaypoint(mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
 					if (w != null) {
 						String str = Integer.toString(w.nameDistance);
-						mc.fontRendererObj.drawStringWithShadow(str, ((e.resolution.getScaledWidth()/2)-(mc.fontRendererObj.getStringWidth(str)/2))-10, (e.resolution.getScaledHeight()/2)-10, -1);
+						mc.fontRenderer.drawStringWithShadow(str, ((e.resolution.getScaledWidth()/2)-(mc.fontRenderer.getStringWidth(str)/2))-10, (e.resolution.getScaledHeight()/2)-10, -1);
 					}
 					TileEntity te = mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
 					if (te instanceof IGlyphHolder) {
 						IGlyphHolder holder = ((IGlyphHolder)te);
 						String str = Math.round((float)holder.getMilliglyphs()/(float)holder.getMaxMilliglyphs()*100f)+"%";
-						mc.fontRendererObj.drawStringWithShadow(str, ((e.resolution.getScaledWidth()/2)-(mc.fontRendererObj.getStringWidth(str)/2))+18, (e.resolution.getScaledHeight()/2)-10, -1);
+						mc.fontRenderer.drawStringWithShadow(str, ((e.resolution.getScaledWidth()/2)-(mc.fontRenderer.getStringWidth(str)/2))+18, (e.resolution.getScaledHeight()/2)-10, -1);
 					}
 				}
 			}
@@ -734,7 +733,7 @@ public class LClientEventHandler {
 				GL11.glScalef(2f, 2f, 1f);
 				int opacity = tabMenuOpen ? 255 : (int)(Math.abs(Math.sin(((Math.min(waypointTicks, 80)+e.partialTicks)/80)*Math.PI))*255);
 				if (opacity > 5) {
-					mc.fontRendererObj.drawString(waypointName, (e.resolution.getScaledWidth()/4)-(mc.fontRendererObj.getStringWidth(waypointName)/2), 4, waypointColor | (opacity << 24), false);
+					mc.fontRenderer.drawString(waypointName, (e.resolution.getScaledWidth()/4)-(mc.fontRenderer.getStringWidth(waypointName)/2), 4, waypointColor | (opacity << 24), false);
 				}
 				GL11.glPopMatrix();
 				GL11.glDisable(GL11.GL_BLEND);
@@ -787,19 +786,19 @@ public class LClientEventHandler {
 					GL11.glPushMatrix();
 						GL11.glTranslatef(0, 2, 0);
 						GL11.glScalef(0.5f, 0.5f, 1f);
-						mc.fontRendererObj.drawStringWithShadow("~", 0, 0, -1);
+						mc.fontRenderer.drawStringWithShadow("~", 0, 0, -1);
 					GL11.glPopMatrix();
 					GL11.glPushMatrix();
 						boolean infinite = mc.thePlayer.capabilities.isCreativeMode;
 						String str = infinite ? "∞" : Integer.toString(blazeCount);
-						GL11.glTranslatef(20-(mc.fontRendererObj.getStringWidth(str)), 12, 0);
+						GL11.glTranslatef(20-(mc.fontRenderer.getStringWidth(str)), 12, 0);
 						GL11.glScalef(0.5f, 0.5f, 1f);
-						mc.fontRendererObj.drawStringWithShadow(str, 0, 0, -1);
+						mc.fontRenderer.drawStringWithShadow(str, 0, 0, -1);
 					GL11.glPopMatrix();
 				GL11.glPopMatrix();
 				if (blaze) {
 					String blz = StatCollector.translateToLocal("mode.blaze.name");
-					mc.fontRendererObj.drawStringWithShadow(blz, (e.resolution.getScaledWidth()/2)-(mc.fontRendererObj.getStringWidth(blz)/2), (int)(16+(16*anim)), 0xFFAA00);
+					mc.fontRenderer.drawStringWithShadow(blz, (e.resolution.getScaledWidth()/2)-(mc.fontRenderer.getStringWidth(blz)/2), (int)(16+(16*anim)), 0xFFAA00);
 				}
 				primary.render(p, stack, 0, 0, e.partialTicks);
 				secondary.render(p, stack, e.resolution.getScaledWidth(), 0, e.partialTicks);
@@ -849,7 +848,7 @@ public class LClientEventHandler {
 							GL11.glEnd();
 							GL11.glPushMatrix();
 								int percent = (int)(((float)holder.getMilliglyphs(is)/holder.getMaxMilliglyphs(is))*100f);
-								Minecraft.getMinecraft().fontRendererObj.drawString(percent+"%", 38, 5, -1);
+								Minecraft.getMinecraft().fontRenderer.drawString(percent+"%", 38, 5, -1);
 							GL11.glPopMatrix();
 						}
 					} else if (i != 0) {
@@ -892,7 +891,7 @@ public class LClientEventHandler {
 						w = Minecraft.getMinecraft().standardGalacticFontRenderer.getStringWidth(str);
 					}
 					if (heightMult > 1) {
-						Minecraft.getMinecraft().fontRendererObj.drawString("x"+heightMult, 8+w, 2, 0xFFAA00);
+						Minecraft.getMinecraft().fontRenderer.drawString("x"+heightMult, 8+w, 2, 0xFFAA00);
 					}
 				} else {
 					Minecraft.getMinecraft().standardGalacticFontRenderer.drawString("Flight not active", 2, 2, 0x888888);
@@ -925,7 +924,7 @@ public class LClientEventHandler {
 					if (AchievementPage.getAchievementPage(currentPage).getName().equals("Lanthanoid")) {
 						GuiLanthanoidAchievements gla = new GuiLanthanoidAchievements((GuiScreen)GuiLanthanoidAchievements.parentScreenField.get(ga), (StatFileWriter)GuiLanthanoidAchievements.statFileWriterField.get(ga));
 						GuiLanthanoidAchievements.currentPageField.set(gla, currentPage);
-						gla.doneLoading();
+						gla.func_146509_g();
 						Minecraft.getMinecraft().displayGuiScreen(gla);
 					}
 				}

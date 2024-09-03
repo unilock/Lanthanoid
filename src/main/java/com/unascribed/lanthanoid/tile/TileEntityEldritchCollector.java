@@ -26,9 +26,9 @@ public class TileEntityEldritchCollector extends TileEntityEldritchWithBooks {
 	@Override
 	protected void doTickLogic() {
 		final int collectString;
-		if (!getWorld().isRemote && ticksExisted % 40 == 0) {
+		if (!getWorldObj().isRemote && ticksExisted % 40 == 0) {
 			if (getMilliglyphs() < getMaxMilliglyphs()) {
-				Collection<Ticket> tickets = ForgeChunkManager.getPersistentChunksFor(getWorld()).get(worldObj.getChunkFromBlockCoords(xCoord, zCoord).getChunkCoordIntPair());
+				Collection<Ticket> tickets = ForgeChunkManager.getPersistentChunksFor(getWorldObj()).get(worldObj.getChunkFromBlockCoords(xCoord, zCoord).getChunkCoordIntPair());
 				boolean playerLoaded = tickets.isEmpty();
 				for (Ticket t : tickets) {
 					if (t.isPlayerTicket()) {

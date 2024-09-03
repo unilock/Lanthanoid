@@ -1,6 +1,5 @@
 package com.unascribed.lanthanoid.init;
 
-import com.unascribed.lanthanoid.compat.BacklytraCompat;
 import com.unascribed.lanthanoid.item.ItemTeleporter;
 import com.unascribed.lanthanoid.item.rifle.Variant;
 
@@ -109,9 +108,9 @@ public class LRecipes {
 		
 		GameRegistry.addRecipe(new ShapelessOreRecipe(LItems.eldritch_helmet_enhanced, 
 				LItems.eldritch_helmet, "gemRaspite", "gemRaspite"));
-		if (Loader.isModLoaded("backlytra")) {
-			BacklytraCompat.addRecipes();
-		}
+//		if (Loader.isModLoaded("backlytra")) {
+//			BacklytraCompat.addRecipes();
+//		}
 	}
 	
 	private static void initEldritchTools() {

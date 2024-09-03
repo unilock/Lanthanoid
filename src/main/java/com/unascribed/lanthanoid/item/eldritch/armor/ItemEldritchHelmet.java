@@ -37,7 +37,7 @@ public class ItemEldritchHelmet extends ItemEldritchArmor {
 					helm.damageItem(265, player);
 					int milliglyphs = getMilliglyphs(helm);
 					setMilliglyphs(helm, 0);
-					player.addPotionEffect(new PotionEffect(Potion.absorption.id, 30*20, milliglyphs/125_000));
+					player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 30*20, milliglyphs/125_000));
 					if (player.worldObj instanceof WorldServer) {
 						((WorldServer)player.worldObj).func_147487_a("enchantmenttable", player.posX, player.boundingBox.maxY, player.posZ, milliglyphs/10000, 0.2, 0.2, 0.2, 0);
 					}
@@ -80,7 +80,7 @@ public class ItemEldritchHelmet extends ItemEldritchArmor {
 								player.worldObj.spawnParticle("iconcrack_" + Item.getIdFromItem(is.getItem()), vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord + 0.05D, vec3.zCoord);
 							}
 						}
-						is = is.getItem().onItemUseFinish(is, player.worldObj, player);
+						is = is.getItem().onEaten(is, player.worldObj, player);
 						if (is == null || is.stackSize <= 0) {
 							player.inventory.setInventorySlotContents(i, null);
 						} else {

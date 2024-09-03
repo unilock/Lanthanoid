@@ -3,7 +3,6 @@ package com.unascribed.lanthanoid.network;
 import com.unascribed.lanthanoid.LanthanoidProperties;
 import com.unascribed.lanthanoid.glyph.IGlyphHolderItem;
 import com.unascribed.lanthanoid.item.eldritch.armor.ItemEldritchArmor;
-import com.unascribed.lanthanoid.item.eldritch.armor.ItemEldritchElytra;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -30,7 +29,7 @@ public final class SetFlyingState {
 			State state = message.state;
 			if (state == State.ELYTRA_BOOST) {
 				ItemStack stack = player.getEquipmentInSlot(3);
-				if (stack.getItem() instanceof ItemEldritchElytra) {
+				if (false/*stack.getItem() instanceof ItemEldritchElytra*/) {
 					IGlyphHolderItem ighi = (IGlyphHolderItem)stack.getItem();
 					if (ighi.getMilliglyphs(stack) < 300) {
 						state = State.NONE;

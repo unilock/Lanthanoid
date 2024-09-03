@@ -31,7 +31,7 @@ public class ItemWreckingBall extends ItemBase {
 	}
 	
 	@Override
-	public int getMaxDurability() {
+	public int getMaxDamage() {
 		return 32768;
 	}
 	

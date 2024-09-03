@@ -34,13 +34,13 @@ public class ItemEldritchShears extends ItemShears implements IGlyphHolderItem {
 	}
 	
 	@Override
-	public float getStrVsBlock(ItemStack stack, Block block) {
-		return getMilliglyphs(stack) > 0 ? super.getStrVsBlock(stack, block) : super.getStrVsBlock(stack, block)/3;
+	public float func_150893_a(ItemStack stack, Block block) {
+		return getMilliglyphs(stack) > 0 ? super.func_150893_a(stack, block) : super.func_150893_a(stack, block)/3;
 	}
 	
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		return getStrVsBlock(stack, block);
+		return func_150893_a(stack, block);
 	}
 	
 	@Override

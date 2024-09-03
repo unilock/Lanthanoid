@@ -71,7 +71,7 @@ public class BlockMulti extends BlockBase implements NameDelegate {
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return helper.getUnlocalizedNameForMeta(stack.getMetadata());
+		return helper.getUnlocalizedNameForMeta(stack.getItemDamage());
 	}
 	
 	public BlockMulti setTemplate(String name, Block template) {
@@ -179,7 +179,7 @@ public class BlockMulti extends BlockBase implements NameDelegate {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		errorIcon = reg.registerIcon("lanthanoid:error");
 		ImmutableList<String> names = helper.getNames();
 		for (int i = 0; i < names.size(); i++) {
@@ -211,7 +211,7 @@ public class BlockMulti extends BlockBase implements NameDelegate {
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return helper.getDisplayNameForMeta(stack.getMetadata());
+		return helper.getDisplayNameForMeta(stack.getItemDamage());
 	}
 
 	public BlockMulti setTexture(String name, String tex) {

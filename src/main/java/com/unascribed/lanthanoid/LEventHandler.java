@@ -3,7 +3,6 @@ package com.unascribed.lanthanoid;
 import java.util.List;
 
 import com.unascribed.lanthanoid.client.LClientEventHandler;
-import com.unascribed.lanthanoid.compat.BacklytraCompat;
 import com.unascribed.lanthanoid.effect.EntityGlyphFX;
 import com.unascribed.lanthanoid.init.LAchievements;
 import com.unascribed.lanthanoid.init.LItems;
@@ -91,7 +90,7 @@ public class LEventHandler {
 				if (!w.owner.equals(e.player.getGameProfile().getId())) {
 					e.player.triggerAchievement(LAchievements.usedWaypoint);
 					if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
-						for (EntityPlayer p : (List<EntityPlayer>)MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
+						for (EntityPlayer p : MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
 							if (p.getGameProfile().getId().equals(w.owner)) {
 								p.triggerAchievement(LAchievements.useWaypoint);
 							}
@@ -117,9 +116,9 @@ public class LEventHandler {
 				}
 			}
 		}
-		if (Loader.isModLoaded("backlytra")) {
-			BacklytraCompat.tick(e.player);
-		}
+//		if (Loader.isModLoaded("backlytra")) {
+//			BacklytraCompat.tick(e.player);
+//		}
 		if (ItemEldritchArmor.hasSetBonus(e.player)) {
 			e.player.triggerAchievement(LAchievements.setBonus);
 			SetFlyingState.State flyingState;
@@ -278,7 +277,7 @@ public class LEventHandler {
 			}*/ else {
 				Entity ent = props.grabbedEntity;
 				if (ent instanceof EntityFallingBlock) {
-					((EntityFallingBlock)ent).fallTime = 2;
+					((EntityFallingBlock)ent).field_145812_b = 2;
 				}
 				ent.fallDistance = 0;
 				Vec3 entPos = Vec3.createVectorHelper(ent.posX, ent.posY, ent.posZ);

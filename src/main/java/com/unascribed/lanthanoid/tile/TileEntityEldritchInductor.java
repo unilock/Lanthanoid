@@ -270,8 +270,8 @@ public class TileEntityEldritchInductor extends TileEntityEldritch implements II
 	}
 
 	@Override
-	public boolean isCustomInventoryName() {
-		return inv.isCustomInventoryName();
+	public boolean hasCustomInventoryName() {
+		return inv.hasCustomInventoryName();
 	}
 
 	@Override
@@ -285,13 +285,13 @@ public class TileEntityEldritchInductor extends TileEntityEldritch implements II
 	}
 
 	@Override
-	public void openChest() {
-		inv.openChest();
+	public void openInventory() {
+		inv.openInventory();
 	}
 
 	@Override
-	public void closeChest() {
-		inv.closeChest();
+	public void closeInventory() {
+		inv.closeInventory();
 	}
 
 	@Override

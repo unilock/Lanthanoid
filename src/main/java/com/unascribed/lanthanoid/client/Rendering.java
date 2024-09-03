@@ -17,7 +17,7 @@ public class Rendering {
 	public static void renderItemDefault(ItemStack item) {
 		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 		float thickness = 0.0625f;
-		for (int i = 0; i < item.getItem().getRenderPasses(item.getMetadata()); i++) {
+		for (int i = 0; i < item.getItem().getRenderPasses(item.getItemDamage()); i++) {
 			IIcon icon = item.getItem().getIcon(item, i, player, player.getItemInUse(), player.getItemInUseCount());
 			int color = item.getItem().getColorFromItemStack(item, i);
 			float r = ((color >> 16)&0xFF)/255f;

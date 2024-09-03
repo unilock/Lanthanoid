@@ -19,7 +19,7 @@ public class SoundEldritchBootNoise extends MovingSoundEntity {
 		this.xPosF = (float)owner.posX;
 		this.yPosF = (float)owner.posY;
 		this.zPosF = (float)owner.posZ;
-		this.pitch = 1;
+		this.field_147663_c = 1;
 		this.volume = 0.05f;
 		this.repeat = true;
 	}
@@ -35,7 +35,7 @@ public class SoundEldritchBootNoise extends MovingSoundEntity {
 		
 		float speed = ((ItemEldritchBoots)boots.getItem()).getSpeed(boots);
 		this.volume = Math.max(0.05f, Math.min(1, speed));
-		this.pitch = 0.5f+speed;
+		this.field_147663_c = 0.5f+speed;
 	}
 	
 }

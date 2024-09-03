@@ -43,7 +43,7 @@ public class TileEntityInventoryGrate extends TileEntity implements IInventory, 
 	@Override
 	public void updateEntity() {
 		if (hasWorldObj()) {
-			AxisAlignedBB aabb = getBlockType().getCollisionBoundingBoxFromPool(getWorld(), xCoord, yCoord, zCoord);
+			AxisAlignedBB aabb = getBlockType().getCollisionBoundingBoxFromPool(getWorldObj(), xCoord, yCoord, zCoord);
 			aabb.offset(0, Math.abs(aabb.maxY-aabb.minY), 0);
 			standingEntities.clear();
 			selectEntitiesWithinAABBReusingList(worldObj, Entity.class, aabb, standingEntities, null);
@@ -124,7 +124,7 @@ public class TileEntityInventoryGrate extends TileEntity implements IInventory, 
 	
 	@Override
 	public int getSizeInventory() {
-		// see below comment on getSlotsForFace for why we don't return 0 here
+		// see below comment on getAccessibleSlotsFromSide for why we don't return 0 here
 		if (standingEntities.isEmpty()) return 1;
 		
 		int size = 0;
@@ -161,7 +161,7 @@ public class TileEntityInventoryGrate extends TileEntity implements IInventory, 
 	}
 
 	@Override
-	public boolean isCustomInventoryName() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 
@@ -183,12 +183,12 @@ public class TileEntityInventoryGrate extends TileEntity implements IInventory, 
 	}
 
 	@Override
-	public void openChest() {
+	public void openInventory() {
 		
 	}
 
 	@Override
-	public void closeChest() {
+	public void closeInventory() {
 		
 	}
 
@@ -199,7 +199,7 @@ public class TileEntityInventoryGrate extends TileEntity implements IInventory, 
 	}
 
 	@Override
-	public int[] getSlotsForFace(int side) {
+	public int[] getAccessibleSlotsFromSide(int side) {
 		if (side == 0) { // bottom
 			if (standingEntities.isEmpty()) {
 				/*

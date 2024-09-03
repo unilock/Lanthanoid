@@ -176,7 +176,7 @@ public class ItemEldritchBoots extends ItemEldritchArmor {
 		Vec3 vec31 = entity.getLookVec();
 		vec31.yCoord = 0;
 		Vec3 vec32 = vec3.addVector(vec31.xCoord * distance, vec31.yCoord * distance, vec31.zCoord * distance);
-		return entity.worldObj.rayTraceBlocks(vec3, vec32, false, true, false);
+		return entity.worldObj.func_147447_a(vec3, vec32, false, true, false);
 	}
 
 }

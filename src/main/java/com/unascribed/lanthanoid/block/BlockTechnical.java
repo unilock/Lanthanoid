@@ -95,7 +95,7 @@ public class BlockTechnical extends Block {
 	}
 	
 	@Override
-	public void registerIcons(IIconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		glyphs = reg.registerIcon("lanthanoid:glyphs");
 	}
 }

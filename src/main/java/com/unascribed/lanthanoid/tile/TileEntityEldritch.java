@@ -67,7 +67,7 @@ public abstract class TileEntityEldritch extends TileEntity implements IGlyphHol
 			if (FMLCommonHandler.instance().getSide().isClient() && FMLCommonHandler.instance().getEffectiveSide().isClient()) {
 				updateSound();
 			}
-			if (!getWorld().isRemote) {
+			if (!getWorldObj().isRemote) {
 				if (getMilliglyphs() > getMaxMilliglyphs()) {
 					setMilliglyphs(getMaxMilliglyphs());
 				}
@@ -181,7 +181,7 @@ public abstract class TileEntityEldritch extends TileEntity implements IGlyphHol
 	
 	@Override
 	public final void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		processDescriptionPacket(pkt.getNbtCompound());
+		processDescriptionPacket(pkt.func_148857_g());
 	}
 	
 	@Override
@@ -236,7 +236,7 @@ public abstract class TileEntityEldritch extends TileEntity implements IGlyphHol
 		bem.z = zCoord;
 		bem.event = event;
 		bem.arg = arg;
-		Lanthanoid.inst.network.sendToAllAround(bem, new TargetPoint(getWorld().provider.dimensionId, xCoord+0.5, yCoord+0.5, zCoord+0.5, 64));
+		Lanthanoid.inst.network.sendToAllAround(bem, new TargetPoint(getWorldObj().provider.dimensionId, xCoord+0.5, yCoord+0.5, zCoord+0.5, 64));
 	}
 	
 	public final List<String> getDebugText() {

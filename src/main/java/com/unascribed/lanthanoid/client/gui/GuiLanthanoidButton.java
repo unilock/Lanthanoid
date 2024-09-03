@@ -22,9 +22,9 @@ public class GuiLanthanoidButton extends GuiButton {
 		Minecraft.getMinecraft().renderEngine.bindTexture(LANTHANIDE_RIFLE);
 		int color = LMaterials.colors.get("Holmium");
 		GL11.glColor3f(((color>>16)&0xFF)/255f, ((color>>8)&0xFF)/255f, (color&0xFF)/255f);
-		drawModalRectWithCustomSizedTexture(xPosition+2, yPosition+2, 0, 0, 16, 16, 16, 16);
-		if (hovered) {
-			FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
+		func_146110_a(xPosition+2, yPosition+2, 0, 0, 16, 16, 16, 16);
+		if (field_146123_n) {
+			FontRenderer fr = Minecraft.getMinecraft().fontRenderer;
 			String str = "Lanthanoid Options";
 			fr.drawStringWithShadow(str, xPosition+10-(fr.getStringWidth(str)/2), yPosition+22, -1);
 		}

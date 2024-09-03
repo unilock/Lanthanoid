@@ -50,7 +50,7 @@ public class GuiLanthanoidAchievements extends GuiAchievements {
 	
 	
 	@Override
-	protected void drawAchievementScreen(int mouseX, int mouseY, float partialTicks) {
+	protected void func_146552_b(int mouseX, int mouseY, float partialTicks) {
 		int currentPage;
 		try {
 			currentPage = currentPageField.getInt(this);
@@ -257,7 +257,7 @@ public class GuiLanthanoidAchievements extends GuiAchievements {
 														// disabled. Fixes
 														// MC-33065
 					GL11.glEnable(GL11.GL_CULL_FACE);
-					renderitem.renderItemAndEffectIntoGUI(this.mc.fontRendererObj, this.mc.getTextureManager(), achievement2.theItemStack, i5 + 3, j5 + 3);
+					renderitem.renderItemAndEffectIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), achievement2.theItemStack, i5 + 3, j5 + 3);
 					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 					GL11.glDisable(GL11.GL_LIGHTING);
 
@@ -290,11 +290,11 @@ public class GuiLanthanoidAchievements extends GuiAchievements {
 			}
 
 			for (erdio = 0; erdio < this.labelList.size(); ++erdio) {
-				((GuiLabel) this.labelList.get(erdio)).drawLabel(this.mc, mouseX, mouseY);
+				((GuiLabel) this.labelList.get(erdio)).func_146159_a(this.mc, mouseX, mouseY);
 			}
 
 			if (achievement != null) {
-				String s1 = achievement.getStatName().getUnformattedText();
+				String s1 = achievement.statName.getUnformattedText();
 				String s2 = achievement.getDescription();
 				i5 = mouseX + 12;
 				j5 = mouseY - 4;
@@ -307,13 +307,13 @@ public class GuiLanthanoidAchievements extends GuiAchievements {
 					if (i4 == 3) {
 						s1 = I18n.format("achievement.unknown", new Object[0]);
 						j4 = Math.max(this.fontRendererObj.getStringWidth(s1), 120);
-						s = (new ChatComponentTranslation("achievement.requires", new Object[] { achievement.parentAchievement.getStatName() })).getUnformattedText();
+						s = (new ChatComponentTranslation("achievement.requires", new Object[] { achievement.parentAchievement.statName })).getUnformattedText();
 						k4 = this.fontRendererObj.splitStringWidth(s, j4);
 						this.drawGradientRect(i5 - 3, j5 - 3, i5 + j4 + 3, j5 + k4 + 12 + 3, -1073741824, -1073741824);
 						this.fontRendererObj.drawSplitString(s, i5, j5 + 12, j4, -9416624);
 					} else if (i4 < 3) {
 						j4 = Math.max(this.fontRendererObj.getStringWidth(s1), 120);
-						s = (new ChatComponentTranslation("achievement.requires", new Object[] { achievement.parentAchievement.getStatName() })).getUnformattedText();
+						s = (new ChatComponentTranslation("achievement.requires", new Object[] { achievement.parentAchievement.statName })).getUnformattedText();
 						k4 = this.fontRendererObj.splitStringWidth(s, j4);
 						this.drawGradientRect(i5 - 3, j5 - 3, i5 + j4 + 3, j5 + k4 + 12 + 3, -1073741824, -1073741824);
 						this.fontRendererObj.drawSplitString(s, i5, j5 + 12, j4, -9416624);
@@ -346,7 +346,7 @@ public class GuiLanthanoidAchievements extends GuiAchievements {
 			RenderHelper.disableStandardItemLighting();
 			return;
 		}
-		super.drawAchievementScreen(mouseX, mouseY, partialTicks);
+		super.func_146552_b(mouseX, mouseY, partialTicks);
 	}
 
 }

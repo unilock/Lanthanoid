@@ -30,10 +30,10 @@ public class GlyphItemHelper {
 	
 	public static void doUpdate(IGlyphHolderItem holder, ItemStack stack, World world, Entity entity, int slot, boolean equipped) {
 		if (entity.ticksExisted % 10 == 0) {
-			int repair = Math.min(holder.getMilliglyphs(stack)/250, stack.getMetadata());
+			int repair = Math.min(holder.getMilliglyphs(stack)/250, stack.getItemDamage());
 			if (repair > 0) {
 				holder.setMilliglyphs(stack, holder.getMilliglyphs(stack)-(repair*500));
-				stack.setMetadata(stack.getMetadata()-repair);
+				stack.setItemDamage(stack.getItemDamage()-repair);
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class GlyphItemHelper {
 	@SideOnly(Side.CLIENT)
 	public static void doAddInformation(IGlyphHolderItem holder, ItemStack stack, EntityPlayer player, List list, boolean advanced) {
 		list.add("\u00A79"+StatCollector.translateToLocalFormatted("ui.eldritch_ability", StatCollector.translateToLocal(stack.getUnlocalizedName()+".ability.name")));
-		list.addAll(Minecraft.getMinecraft().fontRendererObj.listFormattedStringToWidth(StatCollector.translateToLocal(stack.getUnlocalizedName()+".ability.desc"), 240));
+		list.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(StatCollector.translateToLocal(stack.getUnlocalizedName()+".ability.desc"), 240));
 		if (player.inventory.armorItemInSlot(3) != null && player.inventory.armorItemInSlot(3).getItem() == LItems.eldritch_helmet_enhanced) {
 			list.add("");
 			list.add(StatCollector.translateToLocalFormatted("ui.glyph_level", ((int)(((float)holder.getMilliglyphs(stack)/holder.getMaxMilliglyphs(stack))*100))+"%"));

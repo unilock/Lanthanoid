@@ -53,7 +53,7 @@ public class TileEntityEldritchFaithPlate extends TileEntityEldritch implements 
 						TileEntity te = worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
 						if (te == null) {
 							EntityFallingBlock efb = new EntityFallingBlock(worldObj, xCoord+0.5, yCoord+1.5, zCoord+0.5, b, meta);
-							efb.fallTime = 2;
+							efb.field_145812_b = 2;
 							worldObj.setBlockToAir(xCoord, yCoord+1, zCoord);
 							if (!worldObj.isRemote) {
 								worldObj.spawnEntityInWorld(efb);
@@ -267,7 +267,7 @@ public class TileEntityEldritchFaithPlate extends TileEntityEldritch implements 
 	}
 
 	@Override
-	public boolean isCustomInventoryName() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 
@@ -282,11 +282,11 @@ public class TileEntityEldritchFaithPlate extends TileEntityEldritch implements 
 	}
 
 	@Override
-	public void openChest() {
+	public void openInventory() {
 	}
 
 	@Override
-	public void closeChest() {
+	public void closeInventory() {
 	}
 
 	@Override

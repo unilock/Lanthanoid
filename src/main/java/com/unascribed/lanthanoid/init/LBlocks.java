@@ -150,8 +150,8 @@ public class LBlocks {
 		GameRegistry.registerBlock(technical = new BlockTechnical(), null, "technical");
 		
 		GameRegistry.registerBlock(energized_lutetium = (BlockEnergizedLutetium) new BlockEnergizedLutetium()
-				.setUnlocalizedName("energized_lutetium")
-				.setTextureName("lanthanoid:plasma"), "energized_lutetium");
+				.setBlockName("energized_lutetium")
+				.setBlockTextureName("lanthanoid:plasma"), "energized_lutetium");
 		
 		GameRegistry.registerBlock(misc = (BlockMulti) new BlockMulti(
 				Lanthanoid.inst.creativeTabDecorative,
@@ -159,7 +159,7 @@ public class LBlocks {
 				Blocks.glowstone,
 				
 				"lampThulite"
-				).setUnlocalizedName("lamp"), "misc");
+				).setBlockName("lamp"), "misc");
 		
 		GameRegistry.registerBlock(machine = new BlockMachine(), ItemBlockMachine.class, "machine");
 		GameRegistry.registerTileEntity(TileEntityWaypoint.class, "lanthanoid:waypoint");

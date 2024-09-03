@@ -106,7 +106,7 @@ public class WaypointManager {
 	
 	public void readFromNBT(NBTTagCompound nbt) {
 		clear();
-		for (String key : (Set<String>)nbt.getKeySet()) {
+		for (String key : nbt.func_150296_c()) {
 			if (key.startsWith("DIM")) {
 				int dimId = Integer.parseInt(key.substring(3));
 				NBTTagList li = nbt.getTagList(key, NBT.TAG_COMPOUND);

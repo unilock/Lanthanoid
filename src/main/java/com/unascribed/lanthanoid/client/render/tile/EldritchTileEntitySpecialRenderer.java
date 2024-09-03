@@ -207,7 +207,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 		}
 		if (glyphs == null || !(teraw instanceof TileEntityEldritch)) {
 			if (teraw.hasWorldObj()) {
-				Lanthanoid.log.error("WRONG TILE ENTITY AT {}, {}, {} IN {} (Normally, this would have crashed your game. Maybe log spam is worse. Who knows.)", teraw.xCoord, teraw.yCoord, teraw.zCoord, teraw.getWorld().provider.getDimensionName());
+				Lanthanoid.log.error("WRONG TILE ENTITY AT {}, {}, {} IN {} (Normally, this would have crashed your game. Maybe log spam is worse. Who knows.)", teraw.xCoord, teraw.yCoord, teraw.zCoord, teraw.getWorldObj().provider.getDimensionName());
 			}
 			// if there's no world object, it's not worth complaining.
 			// we're stuck in some crappy fakeworld and it's not getting better.
@@ -228,7 +228,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 		playerAnim /= 20;
 		
 		float glyphCount = Math.max(1, Math.min(te.getMilliglyphs(), te.getMaxMilliglyphs()))/(float)te.getMaxMilliglyphs();
-		int brightness = te.getWorld().getLightBrightnessForSkyBlocks(te.xCoord, te.yCoord+1, te.zCoord, 0);
+		int brightness = te.getWorldObj().getLightBrightnessForSkyBlocks(te.xCoord, te.yCoord+1, te.zCoord, 0);
 		float t = (te.ticksExisted+partialTicks)+((te.xCoord*31)+(te.yCoord*31)+(te.zCoord*31));
 		
 		int books = 0;
@@ -243,7 +243,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 				Minecraft.getMinecraft().thePlayer.getDistanceSq(te.xCoord+0.5, te.yCoord+0.5, te.zCoord+0.5) < (64*64));
 		
 		if (Minecraft.getMinecraft().gameSettings.showDebugInfo && Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode) {
-			FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
+			FontRenderer fr = Minecraft.getMinecraft().fontRenderer;
 			
 			GL11.glPushMatrix();
 				List<String> li = te.getDebugText();
@@ -296,7 +296,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 				GL11.glBegin(GL11.GL_LINES);
 				for (int cX = minCX; cX <= maxCX; cX++) {
 					for (int cZ = minCZ; cZ <= maxCZ; cZ++) {
-						Chunk c = te.getWorld().getChunkFromChunkCoords(cX, cZ);
+						Chunk c = te.getWorldObj().getChunkFromChunkCoords(cX, cZ);
 						for (TileEntity cur : (Collection<TileEntity>)c.chunkTileEntityMap.values()) {
 							if (cur.xCoord >= minX && cur.xCoord <= maxX
 									&& cur.zCoord >= minZ && cur.zCoord <= maxZ
@@ -311,14 +311,14 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 									double eX = cur.xCoord+0.5;
 									double eY = cur.yCoord+0.5;
 									double eZ = cur.zCoord+0.5;
-									eX += te.getWorld().rand.nextGaussian()*0.15;
-									eY += te.getWorld().rand.nextGaussian()*0.15;
-									eZ += te.getWorld().rand.nextGaussian()*0.15;
-									MovingObjectPosition mop = te.getWorld().rayTraceBlocks(
+									eX += te.getWorldObj().rand.nextGaussian()*0.15;
+									eY += te.getWorldObj().rand.nextGaussian()*0.15;
+									eZ += te.getWorldObj().rand.nextGaussian()*0.15;
+									MovingObjectPosition mop = te.getWorldObj().rayTraceBlocks(
 											Vec3.createVectorHelper(sX, sY, sZ),
 											Vec3.createVectorHelper(eX, eY, eZ));
 									if (mop != null) {
-										if (mop.typeOfHit == MovingObjectType.BLOCK && te.getWorld().getTileEntity(mop.blockX, mop.blockY, mop.blockZ) == holder) {
+										if (mop.typeOfHit == MovingObjectType.BLOCK && te.getWorldObj().getTileEntity(mop.blockX, mop.blockY, mop.blockZ) == holder) {
 											GL11.glColor4f(1, 1, 1, 0.15f);
 											GL11.glVertex3d(0, 0, 0);
 											GL11.glVertex3d((cur.xCoord+0.5f)-baseX, (cur.yCoord+0.5f)-baseY, (cur.zCoord+0.5f)-baseZ);
@@ -401,7 +401,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
 				Tessellator tess = Tessellator.instance;
 				RenderBlocks rb = RenderBlocks.getInstance();
-				rb.blockAccess = te.getWorld();
+				rb.blockAccess = te.getWorldObj();
 				float q = (10*len);
 				float ofs = (Math.abs(MathHelper.sin((Math.min(q, tefp.bounceAnimTicks+(6*len)+partialTicks)/q)*(float)Math.PI))/2)*len;
 				GL11.glTranslatef(x-te.xCoord, y+ofs-te.yCoord+0.025f, z-te.zCoord);
@@ -452,7 +452,7 @@ public class EldritchTileEntitySpecialRenderer extends TileEntitySpecialRenderer
 						//GL11.glRotatef(((te.hashCode()^(i*3433))/67f)%180, 0, 0, 1);
 						//GL11.glTranslatef(-ofsX, -ofsY, 0);
 						try {
-							dummy.setWorld(te.getWorld());
+							dummy.setWorld(te.getWorldObj());
 							dummy.setEntityItemStack(stack);
 							dummy.ticksExisted = 0;
 							dummy.age = 0;

@@ -28,7 +28,7 @@ public final class SpaceShipCrash {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(Message message, MessageContext ctx) {
-			PositionedSoundRecord s = PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("lanthanoid", "spaceship_crash"));
+			PositionedSoundRecord s = PositionedSoundRecord.func_147673_a(new ResourceLocation("lanthanoid", "spaceship_crash"));
 			Minecraft.getMinecraft().getSoundHandler().playSound(s);
 			LClientEventHandler.flashes.add(new SkyFlash(message.type.color));
 			return null;
