@@ -34,6 +34,5 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    implementation("com.github.GTNewHorizons:MalisisCore:0.15.0:dev")
-    compileOnly(rfg.deobf("curse.maven:backlytra-244337:2296363"))
+    //compileOnly(rfg.deobf("curse.maven:backlytra-244337:2296363"))
 }

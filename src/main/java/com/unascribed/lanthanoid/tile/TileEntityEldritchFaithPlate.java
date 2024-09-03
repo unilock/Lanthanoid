@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.unascribed.lanthanoid.init.LBlocks;
+import com.unascribed.lanthanoid.util.ItemUtils;
 
-import net.malisis.core.util.ItemUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityFallingBlock;

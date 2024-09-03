@@ -39,7 +39,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,7 +48,7 @@ import net.minecraftforge.common.MinecraftForge;
 	name="Lanthanoid",
 	version=Tags.VERSION,
 	acceptedMinecraftVersions="[1.7.10]",
-	dependencies="required-after:malisiscore;after:backlytra"
+	dependencies="after:backlytra"
 	)
 public class Lanthanoid {
 	public static Logger log;
@@ -155,8 +154,7 @@ public class Lanthanoid {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public static Vec3 modifySkyColor(WorldProvider base, Entity entity, float partialTicks) {
-		Vec3 color = base.getSkyColor(entity, partialTicks);
+	public static Vec3 modifySkyColor(Vec3 color, Entity entity, float partialTicks) {
 		LClientEventHandler.inst.onSkyColor(color, entity, partialTicks);
 		return color;
 	}
