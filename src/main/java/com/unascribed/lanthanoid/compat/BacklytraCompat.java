@@ -1,5 +1,5 @@
-package com.unascribed.lanthanoid.compat;
-
+//package com.unascribed.lanthanoid.compat;
+//
 //import java.util.List;
 //
 //import com.unascribed.backlytra.Backlytra;
@@ -33,11 +33,11 @@ package com.unascribed.lanthanoid.compat;
 //
 //	public static void init() {
 //		ArmorMaterial eldritchElytra = EnumHelper.addArmorMaterial("ELDRITCH_ELYTRA", Backlytra.durability*3, new int[]{0, 2, 0, 0}, 12);
-//		
+//
 //		LItems.eldritch_elytra = new ItemEldritchElytra(eldritchElytra);
 //		GameRegistry.registerItem(LItems.eldritch_elytra, "eldritch_elytra");
 //	}
-//	
+//
 //	public static void tick(EntityPlayer p) {
 //		ItemStack itemstack = p.getEquipmentInSlot(3);
 //		int soundMode = FieldImitations.get(p, "lanthanoidElytraSoundMode", 0);
@@ -86,7 +86,7 @@ package com.unascribed.lanthanoid.compat;
 //		}
 //		FieldImitations.set(p, "lanthanoidElytraSoundMode", soundMode);
 //	}
-//	
+//
 //	private static void emit(EntityPlayer player, double height) {
 //		if (player.worldObj.isRemote && FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 //			Vec3 right = player.getLookVec();
@@ -113,10 +113,10 @@ package com.unascribed.lanthanoid.compat;
 //			Minecraft.getMinecraft().effectRenderer.addEffect(fx);
 //		}
 //	}
-//	
+//
 //	@SideOnly(Side.CLIENT)
 //	private static ElytraSound sound;
-//	
+//
 //	@SideOnly(Side.CLIENT)
 //	private static void startSound(EntityPlayer p, boolean jet) {
 //		if (!(p instanceof EntityPlayerSP)) return;

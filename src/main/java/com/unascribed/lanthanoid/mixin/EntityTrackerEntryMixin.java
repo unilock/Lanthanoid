@@ -1,5 +1,7 @@
 package com.unascribed.lanthanoid.mixin;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -9,44 +11,55 @@ import com.unascribed.lanthanoid.Lanthanoid;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityTrackerEntry;
 import net.minecraft.entity.player.EntityPlayerMP;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.Inject;
 
 import java.util.Set;
 
-/**
- * Very hacky mixin while @Expression is in beta
- */
 @Mixin(EntityTrackerEntry.class)
 public class EntityTrackerEntryMixin {
 	@Shadow
 	public Entity myEntity;
 
-	@ModifyVariable(method = "tryStartWachingThis", at = @At("STORE"), ordinal = 0)
-	private double d0(double value, @Local(argsOnly = true) EntityPlayerMP p_73117_1_, @Share("lanthanoid") LocalBooleanRef lanthanoid) {
-		if (Lanthanoid.forceTrackingFor(p_73117_1_, this.myEntity)) {
-			lanthanoid.set(true);
-			return -1;
-		} else {
-			lanthanoid.set(false);
-		}
-		return value;
+	@Inject(method = "tryStartWatchingThis", at = @At("HEAD"))
+	private void head(EntityPlayerMP p_73117_1_, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		shouldForceTracking.set(Lanthanoid.forceTrackingFor(p_73117_1_, this.myEntity));
 	}
 
-	@WrapOperation(method = "tryStartWachingThis", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/EntityTrackerEntry;blocksDistanceThreshold:I", opcode = Opcodes.GETFIELD, ordinal = 0))
-	private int blocksDistanceThreshold(EntityTrackerEntry instance, Operation<Integer> original, @Share("lanthanoid") LocalBooleanRef lanthanoid) {
-		if (lanthanoid.get()) {
-			return 0;
-		}
-		return original.call(instance);
+	@Definition(id = "blocksDistanceThreshold", field = "Lnet/minecraft/entity/EntityTrackerEntry;blocksDistanceThreshold:I")
+	@Definition(id = "d0", type = double.class, local = @Local(ordinal = 0))
+	@Expression("d0 >= -this.blocksDistanceThreshold")
+	@WrapOperation(method = "tryStartWatchingThis", at = @At("MIXINEXTRAS:EXPRESSION"))
+	private boolean checkA(boolean original, EntityPlayerMP p_73117_1_, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		return shouldForceTracking.get() || original;
+	}
+	@Definition(id = "blocksDistanceThreshold", field = "Lnet/minecraft/entity/EntityTrackerEntry;blocksDistanceThreshold:I")
+	@Definition(id = "d0", type = double.class, local = @Local(ordinal = 0))
+	@Expression("d0 <= this.blocksDistanceThreshold")
+	@WrapOperation(method = "tryStartWatchingThis", at = @At("MIXINEXTRAS:EXPRESSION"))
+	private boolean checkB(boolean original, EntityPlayerMP p_73117_1_, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		return shouldForceTracking.get() || original;
+	}
+	@Definition(id = "blocksDistanceThreshold", field = "Lnet/minecraft/entity/EntityTrackerEntry;blocksDistanceThreshold:I")
+	@Definition(id = "d1", type = double.class, local = @Local(ordinal = 1))
+	@Expression("d1 >= -this.blocksDistanceThreshold")
+	@WrapOperation(method = "tryStartWatchingThis", at = @At("MIXINEXTRAS:EXPRESSION"))
+	private boolean checkC(boolean original, EntityPlayerMP p_73117_1_, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		return shouldForceTracking.get() || original;
+	}
+	@Definition(id = "blocksDistanceThreshold", field = "Lnet/minecraft/entity/EntityTrackerEntry;blocksDistanceThreshold:I")
+	@Definition(id = "d1", type = double.class, local = @Local(ordinal = 1))
+	@Expression("d1 <= this.blocksDistanceThreshold")
+	@WrapOperation(method = "tryStartWatchingThis", at = @At("MIXINEXTRAS:EXPRESSION"))
+	private boolean checkD(boolean original, EntityPlayerMP p_73117_1_, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		return shouldForceTracking.get() || original;
 	}
 
 	@WrapOperation(method = "tryStartWachingThis", at = @At(value = "INVOKE", target = "Ljava/util/Set;contains(Ljava/lang/Object;)Z", ordinal = 1))
-	private boolean contains(Set instance, Object o, Operation<Boolean> original, @Share("lanthanoid") LocalBooleanRef lanthanoid) {
-		if (lanthanoid.get()) {
+	private boolean contains(Set instance, Object o, Operation<Boolean> original, @Share("shouldForceTracking") LocalBooleanRef shouldForceTracking) {
+		if (shouldForceTracking.get()) {
 			return true;
 		}
 		return original.call(instance, o);

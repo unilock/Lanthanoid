@@ -1,5 +1,5 @@
-package com.unascribed.lanthanoid.item.eldritch.armor;
-
+//package com.unascribed.lanthanoid.item.eldritch.armor;
+//
 //import java.util.List;
 //
 //import com.unascribed.backlytra.ItemElytra;
@@ -15,6 +15,7 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //import net.minecraft.client.renderer.texture.IIconRegister;
 //import net.minecraft.entity.Entity;
 //import net.minecraft.entity.player.EntityPlayer;
+//import net.minecraft.item.ItemArmor;
 //import net.minecraft.item.ItemStack;
 //import net.minecraft.tileentity.TileEntity;
 //import net.minecraft.util.IIcon;
@@ -24,53 +25,53 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //
 //public class ItemEldritchElytra extends ItemElytra implements IGlyphHolderItem {
 //	private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation("lanthanoid", "textures/models/eldritch_elytra.png");
-//	public ItemEldritchElytra(ArmorMaterial mat) {
+//	public ItemEldritchElytra(ItemArmor.ArmorMaterial mat) {
 //		super(mat);
 //		setCreativeTab(Lanthanoid.inst.creativeTabEquipment);
 //		setUnlocalizedName("eldritch_elytra");
 //		setTextureName("lanthanoid:eldritch_elytra");
 //		setMaxDamage(432);
 //	}
-//	
+//
 //	private IIcon glyphs;
-//	
+//
 //	@Override
 //	public IIcon getGlyphs(ItemStack stack) {
 //		return glyphs;
 //	}
-//	
+//
 //	@Override
 //	public int getMaxMilliglyphs(ItemStack stack) {
 //		return 500_000;
 //	}
-//	
+//
 //	@Override
 //	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 //		return "lanthanoid:textures/models/eldritch_elytra_layer.png";
 //	}
-//	
+//
 //	@Override
 //	public ResourceLocation getElytraTexture(ItemStack itemstack) {
 //		return TEXTURE_ELYTRA;
 //	}
-//	
+//
 //	@Override
 //	public ResourceLocation getElytraSound(ItemStack itemstack) {
 //		return null;
 //	}
-//	
+//
 //	@Override
 //	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
 //		GlyphItemHelper.doAddInformation(this, stack, player, list, advanced);
 //		list.add("");
 //		list.add((hasSetBonus(player) ? "\u00A79" : "\u00A78")+StatCollector.translateToLocal("ui.eldritch_set_bonus"));
 //	}
-//	
+//
 //	@Override
 //	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 //		GlyphItemHelper.doUpdate(this, stack, world, player, 3-armorType, true);
 //	}
-//	
+//
 //	@Override
 //	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean equipped) {
 //		GlyphItemHelper.doUpdate(this, stack, world, entity, slot, equipped);
@@ -85,12 +86,12 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //			}
 //		}
 //	}
-//	
+//
 //	@Override
 //	public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
 //		return itemStackIn;
 //	}
-//	
+//
 //	@Override
 //	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float subX, float subY, float subZ) {
 //		TileEntity te = world.getTileEntity(x, y, z);
@@ -102,7 +103,7 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //		player.setCurrentItemOrArmor(0, super.onItemRightClick(stack, world, player));
 //		return false;
 //	}
-//	
+//
 //	public static boolean hasSetBonus(EntityPlayer player) {
 //		for (ItemStack is : player.inventory.armorInventory) {
 //			if (is == null || !(is.getItem() instanceof ItemEldritchArmor)) {
@@ -111,7 +112,7 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //		}
 //		return true;
 //	}
-//	
+//
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void registerIcons(IIconRegister register) {
@@ -123,17 +124,17 @@ package com.unascribed.lanthanoid.item.eldritch.armor;
 //	public float getGlyphColorRed(ItemStack is) {
 //		return GlyphItemHelper.getDefaultGlyphColorRed(this, is);
 //	}
-//	
+//
 //	@Override
 //	public float getGlyphColorGreen(ItemStack is) {
 //		return GlyphItemHelper.getDefaultGlyphColorGreen(this, is);
 //	}
-//	
+//
 //	@Override
 //	public float getGlyphColorBlue(ItemStack is) {
 //		return GlyphItemHelper.getDefaultGlyphColorBlue(this, is);
 //	}
-//	
+//
 //	@Override
 //	public float getGlyphColorAlpha(ItemStack is) {
 //		return GlyphItemHelper.getDefaultGlyphColorAlpha(this, is);
